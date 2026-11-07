@@ -4,7 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 export default function AITutor({ id, studentId }) {
-  const [settings, setSettings] = useState({
+  const [, setSettings] = useState({
     tone: "friendly",
     strictness: "medium",
     teachingStyle: "step-by-step",
