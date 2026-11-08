@@ -13,9 +13,9 @@ export default function TeacherControlPanel() {
 
   useEffect(() => {
     async function loadSettings() {
-      const res = await fetch(
-        `http://localhost:3001/teacher/settings?classId=${classId}`
-      );
+     const res = await fetch(
+  `https://eduai-api-iifp.onrender.com/teacher/settings?classId=${classId}`
+);
 
       const data = await res.json();
       setSettings(data);
@@ -41,7 +41,7 @@ export default function TeacherControlPanel() {
 
     try {
       const res = await fetch(
-        "http://localhost:3001/teacher/command",
+  "https://eduai-api-iifp.onrender.com/teacher/command",
         {
           method: "POST",
           headers: {

@@ -295,6 +295,45 @@ app.get("/teacher/settings", async (req, res) => {
     res.status(500).json({ error: "Failed to read configuration mapping states." });
   }
 });
+ // =============================================================
+// 🟨 6. CLASS INFORMATION ROUTE
+// =============================================================
+app.get("/class/info", async (req, res) => {
+  try {
+    const { classId } = req.query;
+
+    if (!classId) {
+      return res.status(400).json({
+        error: "Missing classId"
+      });
+    }
+
+    const snap = await db
+      .collection("classes")
+      .doc(classId)
+      .get();
+
+    if (!snap.exists) {
+      return res.json({
+        name: classId
+      });
+    }
+
+    const data = snap.data();
+
+    res.json({
+      name: data.name || classId,
+      subject: data.subject || "",
+      period: data.period || ""
+    });
+  } catch (err) {
+    console.error("Class info route error:", err);
+
+    res.status(500).json({
+      error: "Failed to retrieve class information"
+    });
+  }
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () =>

@@ -12,20 +12,25 @@ export default function TeacherContentChat() {
   const [loading, setLoading] = useState(false);
   const documentBoxRef = useRef(null);
 
-  useEffect(() => {
-    async function loadClassData() {
-      const res = await fetch(`http://localhost:3001/class/info?classId=${classId}`);
-      const data = await res.json();
-      setClassName(data.name || classId);
+useEffect(() => {
+  async function loadClassData() {
+    const res = await fetch(
+      `https://eduai-api-iifp.onrender.com/class/info?classId=${classId}`
+    );
 
-      const settingsRes = await fetch(`http://localhost:3001/teacher/settings?classId=${classId}`);
-      const settingsData = await settingsRes.json();
-      setSettings(settingsData);
-    }
+    const data = await res.json();
+    setClassName(data.name || classId);
 
-    loadClassData();
-  }, [classId]);
+    const settingsRes = await fetch(
+      `https://eduai-api-iifp.onrender.com/teacher/settings?classId=${classId}`
+    );
 
+    const settingsData = await settingsRes.json();
+    setSettings(settingsData);
+  }
+
+  loadClassData();
+}, [classId]);
   useEffect(() => {
     if (documentBoxRef.current) {
       documentBoxRef.current.scrollTop = documentBoxRef.current.scrollHeight;
@@ -45,7 +50,7 @@ export default function TeacherContentChat() {
     setInput("");
 
     try {
-      const res = await fetch("http://localhost:3001/ai", {
+      const res = await fetch("https://eduai-api-iifp.onrender.com/ai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

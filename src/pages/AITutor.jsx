@@ -48,7 +48,9 @@ export default function AITutor({ id, studentId }) {
     setInput("");
 
     try {
-      const res = await fetch("http://localhost:3001/student-ai", {
+      const res = await fetch(
+  "https://eduai-api-iifp.onrender.com/student-ai",
+  {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

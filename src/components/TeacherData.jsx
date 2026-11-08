@@ -48,8 +48,8 @@ export default function TeacherData() {
       if (!classId) return;
 
       const response = await fetch(
-        `http://localhost:3001/teacher/data?classId=${classId}`
-      );
+  `https://eduai-api-iifp.onrender.com/teacher/data?classId=${classId}`
+);
 
       const data = await response.json();
       setMetrics(data);
