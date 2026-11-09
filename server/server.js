@@ -164,7 +164,7 @@ app.post("/ai", async (req, res) => {
 // =============================================================
 app.post("/teacher/command", async (req, res) => {
   try {
-    const { message, command, currentSettings, classId } = req.body;
+    const { message, command, classId } = req.body;
 
     const teacherMessage = message || command || "";   // ⭐ SAFE
 
