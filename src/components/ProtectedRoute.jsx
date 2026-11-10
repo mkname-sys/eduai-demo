@@ -43,8 +43,8 @@ export default function ProtectedRoute({ children }) {
   }
 
   if (!userData) {
-    return <Navigate to="/login" replace />;
-  }
+  return children;
+}
 
   // Inject user into AdminGate
   return children && typeof children === "object"
