@@ -366,6 +366,18 @@ Ask me anything — let's learn together!
 if (favoritePlanetMatch) {
   memory.facts.favoritePlanet =
     favoritePlanetMatch[1].trim();
+
+  await updateStudentMemory(studentId, {
+    facts: memory.facts,
+    updatedAt: Date.now()
+  });
+
+  return {
+    response:
+      `Got it! I'll remember that your favorite planet is ${memory.facts.favoritePlanet}.`,
+    mode: "memory",
+    topic: null
+  };
 }
 
 if (memory?.facts?.favoritePlanet) {
@@ -377,14 +389,49 @@ if (memory?.facts?.favoritePlanet) {
 const lower = message.toLowerCase();
 
 if (
-  lower.includes("favorite planet") ||
-  lower.includes("fav planet")
-) {
+  lower.includes("what is my favorite planet") ||
+  lower.includes("what's my favorite planet") ||
+  lower.includes("do you know my favorite planet")
+){
   return {
     response:
   persistentMemory?.facts?.favoritePlanet
     ? `Your favorite planet is ${persistentMemory.facts.favoritePlanet}.`
     : "I don't know your favorite planet yet.",
+    mode: "memory",
+    topic: null
+  };
+}
+
+const favoriteColorMatch =
+  message.match(/my favorite color is (.+)/i);
+
+if (favoriteColorMatch) {
+  memory.facts.favoriteColor =
+    favoriteColorMatch[1].trim();
+
+  await updateStudentMemory(studentId, {
+    facts: memory.facts,
+    updatedAt: Date.now()
+  });
+
+  return {
+    response:
+      `Got it! I'll remember that your favorite color is ${memory.facts.favoriteColor}.`,
+    mode: "memory",
+    topic: null
+  };
+}
+if (
+  lower.includes("what is my favorite color") ||
+  lower.includes("what's my favorite color") ||
+  lower.includes("do you know my favorite color")
+) {
+  return {
+    response:
+      persistentMemory?.facts?.favoriteColor
+        ? `Your favorite color is ${persistentMemory.facts.favoriteColor}.`
+        : "I don't know your favorite color yet.",
     mode: "memory",
     topic: null
   };
