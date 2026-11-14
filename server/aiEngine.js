@@ -437,7 +437,8 @@ if (
   };
 }
   const db = admin.firestore();
-
+console.log("QUESTION:", message);
+console.log("BLOCKED TOPICS:", runtimeSettings.blockedTopics);
   const safetyStatus = runSafetyChecks(message, runtimeSettings.blockedTopics);
   if (!safetyStatus.allowed) {
     await logAIActivity({
