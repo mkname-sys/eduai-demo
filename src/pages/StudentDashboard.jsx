@@ -95,7 +95,11 @@ export default function StudentDashboard() {
     setMessages(prev => ({ ...prev, [currentClassId]: updatedHistory }));
     setInput("");
     setIsTyping(true);
-
+console.log("STUDENT REQUEST:", {
+  message: input,
+  studentId: studentId || "local-student",
+  classId: id || "global-hub"
+});
     try {
       const response = await fetch(
   "https://eduai-api-iifp.onrender.com/student-ai",{

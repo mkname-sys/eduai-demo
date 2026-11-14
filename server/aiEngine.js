@@ -349,7 +349,7 @@ console.log("CLASS SETTINGS:", classSettings);
     blockedTopics: classSettings?.blockedTopics || globalSettings.blockedTopics || [],
     customRules: classSettings?.customRules || globalSettings.customRules || []
   };
-  console.log("RUNTIME SETTINGS:", runtimeSettings);
+ console.log("RUNTIME SETTINGS:", runtimeSettings); 
   const memoryKey = `${studentId}_${classId}`;
   if (!studentMemory[memoryKey]) {
   studentMemory[memoryKey] = {
@@ -437,8 +437,7 @@ if (
   };
 }
   const db = admin.firestore();
-console.log("QUESTION:", message);
-console.log("BLOCKED TOPICS:", runtimeSettings.blockedTopics);
+
   const safetyStatus = runSafetyChecks(message, runtimeSettings.blockedTopics);
   if (!safetyStatus.allowed) {
     await logAIActivity({
