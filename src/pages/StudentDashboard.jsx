@@ -106,9 +106,9 @@ export default function StudentDashboard() {
     setInput("");
     setIsTyping(true);
 console.log("STUDENT REQUEST:", {
-  message: input,
-  studentId: studentId || "local-student",
-  classId: id || "global-hub"
+  message: userText,
+  studentId: studentId,
+  classId: currentClassId
 });
     try {
       const response = await fetch(
