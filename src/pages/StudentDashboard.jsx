@@ -43,9 +43,19 @@ export default function StudentDashboard() {
   useEffect(() => {
     const fallbackTimer = setTimeout(() => {
       const mockClasses = [
-        { id: "math-101", name: "Science — Period 1", subject: "Science", shortName: "S" },
-        { id: "math-102", name: "Math — Period 2", subject: "Math", shortName: "M" }
-      ];
+  {
+    id: "period1_science",
+    name: "Science — Period 1",
+    subject: "Science",
+    shortName: "S"
+  },
+  {
+    id: "period2_math",
+    name: "Math — Period 2",
+    subject: "Math",
+    shortName: "M"
+  }
+];
       setClasses(mockClasses);
       setActiveClass(mockClasses[0]);
       setLoading(false);
