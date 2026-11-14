@@ -340,7 +340,7 @@ Ask me anything — let's learn together!
     .get();
 
   const globalSettings = globalSettingsSnap.exists ? globalSettingsSnap.data() : {};
-
+console.log("CLASS SETTINGS:", classSettings);
   const runtimeSettings = {
     tone: classSettings?.tone || globalSettings.tone || ttcSettings.tone,
     strictness: classSettings?.strictness || globalSettings.strictness || "medium",
@@ -349,7 +349,7 @@ Ask me anything — let's learn together!
     blockedTopics: classSettings?.blockedTopics || globalSettings.blockedTopics || [],
     customRules: classSettings?.customRules || globalSettings.customRules || []
   };
-  
+  console.log("RUNTIME SETTINGS:", runtimeSettings);
   const memoryKey = `${studentId}_${classId}`;
   if (!studentMemory[memoryKey]) {
   studentMemory[memoryKey] = {
