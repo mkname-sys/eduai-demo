@@ -41,10 +41,14 @@ app.post("/student-ai", async (req, res) => {
 
     if (classId && classId !== "global-hub") {
       const classSnap = await db.collection("classes").doc(classId).get();
+
+      console.log("CLASS ID:", classId);
+
       if (classSnap.exists) {
+        console.log("CLASS DOC:", classSnap.data());
         classroomRules = classSnap.data().settings || classroomRules;
       }
-      
+
       const logsSnap = await db
         .collection("classes")
         .doc(classId)
